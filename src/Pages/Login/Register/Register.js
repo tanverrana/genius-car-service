@@ -8,10 +8,14 @@ const Register = () => {
     const navigateLogin = () => {
         navigate("/login");
     }
+
+    const handleRegister = event => {
+        event.preventDefault();
+    }
     return (
         <div className="register-form">
             <h2 style={{ textAlign: "center" }}>Please Register.</h2>
-            <form>
+            <form onSubmit={handleRegister}>
                 <input type="text" name="name" id="" placeholder="Your Name" />
 
                 <input type="email" name="email" id="" placeholder="Enter your email" required />
