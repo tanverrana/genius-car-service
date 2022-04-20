@@ -4,8 +4,10 @@ import "./Register.css";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { useState } from 'react';
 
 const Register = () => {
+    const [agree, setAgree] = useState(false)
     const [
         createUserWithEmailAndPassword,
         user,
@@ -29,9 +31,13 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        // const agree = event.target.terms.checked;
+        if (agree) {
+            createUserWithEmailAndPassword(email, password);
+
+        }
         console.log(event.target.email.value);
 
-        createUserWithEmailAndPassword(email, password);
 
     };
     return (
@@ -43,8 +49,8 @@ const Register = () => {
                 <input type="email" name="email" id="" placeholder="Enter your email" required />
 
                 <input type="password" name="password" id="" placeholder="Enter your Password" required />
-                <input type="checkbox" name="terms" id="terms" />
-                <label htmlFor="terms">Accept Genius Terms and Condition</label>
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={agree ? "text-primary" : "text-danger"} htmlFor="terms">Accept Genius Terms and Condition</label>
                 <input className="btn btn-primary w-50 mx-auto mt-2" type="submit" value="Register" />
             </form>
             <p>Already Have an account? <Link className="text-danger text-decoration-none" to="/login" onClick={navigateLogin}>Please LogIn</Link></p>
