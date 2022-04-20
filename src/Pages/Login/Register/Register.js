@@ -50,8 +50,9 @@ const Register = () => {
 
                 <input type="password" name="password" id="" placeholder="Enter your Password" required />
                 <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
-                <label className={agree ? "text-primary" : "text-danger"} htmlFor="terms">Accept Genius Terms and Condition</label>
-                <input className="btn btn-primary w-50 mx-auto mt-2" type="submit" value="Register" />
+                <label className={`ps-2 ${agree ? "" : "text-danger"}`} htmlFor="terms">Accept Genius Terms and Condition</label>
+                {/* <label className={agree ? "ps-2 text-primary" : "ps-2 text-danger"} htmlFor="terms">Accept Genius Terms and Condition</label> */}
+                <input disabled={!agree} className="btn btn-primary w-50 mx-auto mt-2" type="submit" value="Register" />
             </form>
             <p>Already Have an account? <Link className="text-danger text-decoration-none" to="/login" onClick={navigateLogin}>Please LogIn</Link></p>
             <SocialLogin></SocialLogin>
